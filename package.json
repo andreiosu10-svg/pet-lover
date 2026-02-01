@@ -6,11 +6,12 @@
     "build": "next build",
     "start": "next start"
   },
-"dependencies": {
-  "next": "latest",
-  "react": "latest",
-  "react-dom": "latest",
-  "@stripe/react-stripe-js": "latest",
-  "@stripe/stripe-js": "latest",
-  "stripe": "latest"
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "@stripe/react-stripe-js": "latest",
+    "@stripe/stripe-js": "latest",
+    "stripe": "latest"
+  }
 }
