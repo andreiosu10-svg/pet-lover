@@ -5,6 +5,7 @@ const stripe = new Stripe('sk_test_51SvrQSGI6cib5uhzUB1zUUnP2zXZQ1wr0GMZHCUCjsfu
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { amount } = req.body;
+
     try {
       const paymentIntent = await stripe.paymentIntents.create({
         amount: amount,
