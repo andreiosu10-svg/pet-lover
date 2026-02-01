@@ -10,20 +10,28 @@ export default function CheckoutForm({ product }) {
   const handleClick = async () => {
     if (!stripe || !elements) return;
     setLoading(true);
-    const res = await fetch('/api/create-payment-intent', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ amount: parseInt(product.price.replace('$','')) * 100 })
-    });
-    const data = await res.json();
-    const result = await stripe.confirmCardPayment(data.clientSecret, {
-      payment_method: { card: elements.getElement(CardElement) }
-    });
-    if (result.error) {
-      alert(result.error.message);
-    } else if (result.paymentIntent.status === 'succeeded') {
-      alert('Plata a fost efectuata cu succes!');
+
+    try {
+      const res = await fetch('/api/create-payment-intent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ amount: parseInt(product.price.replace('$', '')) * 100 })
+      });
+      const data = await res.json();
+
+      const result = await stripe.confirmCardPayment(data.clientSecret, {
+        payment_method: { card: elements.getElement(CardElement) }
+      });
+
+      if (result.error) {
+        alert(result.error.message);
+      } else if (result.paymentIntent.status === 'succeeded') {
+        alert('Plata a fost efectuata cu succes!');
+      }
+    } catch (err) {
+      alert('Eroare la plata: ' + err.message);
     }
+
     setLoading(false);
   };
 
