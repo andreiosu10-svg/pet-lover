@@ -1,0 +1,6 @@
+git init
+git add .
+git commit -m "Initial commit Pet Lover"
+git branch -M main
+git remote add origin https://github.com/andreiosu10-svg/pet-lover.git
+git push -u origin main
