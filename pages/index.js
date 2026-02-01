@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements, useStripe, useElements, CardElement } from '@stripe/react-stripe-js';
 import Image from 'next/image';
-import Logo from '/public/logo.png';
 
 const stripePromise = loadStripe('pk_test_51SvrQSGI6cib5uhzUB1zUUnP2zXZQ1wr0GMZHCUCjsfuByuXrVEz4wGvt25iZF0wAUJXUdV6CNUVffnNfFpJnDWB00Hbs9v8aW');
 
@@ -36,7 +35,14 @@ function CheckoutForm({ product }) {
       <button
         onClick={handleClick}
         disabled={!stripe || loading}
-        style={{ marginTop: '10px', padding: '10px', backgroundColor:'#f43f5e', color:'#fff', borderRadius:'8px', width:'100%' }}
+        style={{
+          marginTop: '10px',
+          padding: '10px',
+          backgroundColor: '#f43f5e',
+          color: '#fff',
+          borderRadius: '8px',
+          width: '100%'
+        }}
       >
         Cumpara acum
       </button>
@@ -55,12 +61,12 @@ export default function Storefront() {
     <Elements stripe={stripePromise}>
       <div style={{ padding: '20px', textAlign: 'center' }}>
         <div style={{ width: '150px', margin: '0 auto' }}>
-          <Image src={Logo} alt="Pet Lover Logo" width={150} height={150} />
+          <Image src="/logo.png" alt="Pet Lover Logo" width={150} height={150} />
         </div>
         <h1>Pet Lover</h1>
-        <div style={{ display:'flex', justifyContent:'center', gap:'20px', flexWrap:'wrap' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
           {products.map((p) => (
-            <div key={p.id} style={{ border:'1px solid #ddd', borderRadius:'12px', padding:'15px', width:'200px' }}>
+            <div key={p.id} style={{ border: '1px solid #ddd', borderRadius: '12px', padding: '15px', width: '200px' }}>
               <h3>{p.name}</h3>
               <p>{p.price}</p>
               <CheckoutForm product={p} />
@@ -70,4 +76,4 @@ export default function Storefront() {
       </div>
     </Elements>
   );
-      }
+}
