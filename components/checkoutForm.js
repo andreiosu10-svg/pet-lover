@@ -47,4 +47,4 @@ export default function CheckoutForm({ product }) {
       </button>
     </div>
   );
-          }
+}
